@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <style>
+        /* Full page background image */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("{{ url_for('static', filename='images/background1.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #ffcc00;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #00ccff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        p, ul {
+            font-size: 18px;
+            text-align: left;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 30px;
+            background-color: #ffcc00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #e6b800;
+        }
+
+        /* Align the button at the bottom center of the page */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Results</h1>
+
+        <h2>Transcription:</h2>
+        <p>{{ transcription }}</p>
+
+        <h2>Extracted Topics:</h2>
+        <ul>
+        {% for topic in topics %}
+            <li>{{ topic }}</li>
+        {% endfor %}
+        </ul>
+
+        <h2>Sentiment Analysis:</h2>
+        <ul>
+        {% for sentiment in sentiments %}
+            <li>{{ sentiment.sentence }} - {{ sentiment.sentiment }} ({{ sentiment.score }})</li>
+        {% endfor %}
+        </ul>
+
+        <h2>Insights:</h2>
+        <p>{{ insights }}</p>
+
+        <!-- Center the button at the bottom -->
+        <div class="btn-container">
+            <a href="/" class="btn">Analyze Another File</a>
+        </div>
+    </div>
+</body>
+</html>
